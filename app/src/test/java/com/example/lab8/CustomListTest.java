@@ -3,6 +3,7 @@ package com.example.lab8;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class CustomListTest {
 
@@ -57,5 +59,14 @@ public class CustomListTest {
         cityList.delete(city);
         assertEquals(1, cityList.getCount());
         assertFalse(cityList.hasCity(city));
+    }
+
+    @Test
+    void testDeleteException() {
+        CustomList cityList = MockCityList();
+        City city = new City("Waterloo", "Ontario");
+        assertThrows(NoSuchElementException.class, () -> {
+            cityList.delete(city);
+        });
     }
 }

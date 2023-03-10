@@ -46,4 +46,16 @@ public class CustomListTest {
         cityList.addCity(city);
         assertTrue(cityList.hasCity(city));
     }
+
+    @Test
+    void testDelete() {
+        CustomList cityList = MockCityList();
+        City city = new City("Toronto", "Ontario");
+        cityList.add(city);
+        assertEquals(2, cityList.getCount());
+        assertTrue(cityList.hasCity(city));
+        cityList.delete(city);
+        assertEquals(1, cityList.getCount());
+        assertFalse(cityList.hasCity(city));
+    }
 }
